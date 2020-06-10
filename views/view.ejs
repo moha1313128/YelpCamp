@@ -1,0 +1,142 @@
+<%- include('includes/header') %> <%- include('includes/navbar.ejs') %>
+<div class="uk-container">
+  <div
+    class="uk-background-cover uk-light uk-padding uk-panel"
+    data-src="<%=post.image%>"
+    uk-img
+  >
+    <div
+      class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin"
+      uk-grid
+    >
+      <div class="uk-card-media-left uk-cover-container">
+        <div class="uk-card-badge uk-label">
+          <a
+            href="#"
+            class="uk-form-icon expand"
+            uk-toggle="target: #image"
+            uk-icon="icon: expand"
+          ></a>
+          <div id="image" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+              <img src="<%= post.image %>" alt="" />
+            </div>
+          </div>
+          <a
+            href="/posts/<%= post._id %>/edit"
+            class="uk-form-icon plus"
+            uk-toggle="target: #edit"
+            uk-icon="icon: file-edit"
+          ></a>
+          <!-- <a
+            href="#"
+            class="uk-form-icon comment"
+            uk-toggle="target: #comment"
+            uk-icon="icon: commenting"
+          ></a> -->
+          <div id="comment" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+              <!-- Form -->
+            </div>
+          </div>
+        </div>
+        <img src="<%= post.image %>" alt="" uk-cover />
+        <canvas width="600" height="400"></canvas>
+      </div>
+      <div>
+        <div class="uk-card-body">
+          <h3 class="uk-card-title"><%= post.title %></h3>
+          <div id="target">
+            <p><%= post.content %></p>
+          </div>
+          <div id="target">
+            <p>
+              Posted By <strong><%= post.author.username %> </strong> / <%-
+              post.createdAt.toDateString() %>
+            </p>
+          </div>
+          <div>
+            <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+              <!-- <a class="uk-form-icon trash" uk-icon="icon: trash"></a> -->
+              <a
+                href="/posts/<%= post._id %>/comments/new "
+                class="uk-button uk-button-primary"
+              >
+                Add Commet
+              </a>
+              <% if(currentUser && post.author.id.equals(currentUser._id)){ %>
+              <a
+                href="/posts/<%= post._id %>/edit "
+                class="uk-button uk-button-primary"
+              >
+                Edit
+              </a>
+              <button class="uk-button uk-button-danger">
+                Delete
+              </button>
+              <% } %>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% post.comments.forEach(function(comment){ %>
+<ul class="uk-comment-list uk-padding">
+  <li>
+    <article
+      class="uk-comment uk-comment-primary uk-visible-toggle"
+      tabindex="-1"
+    >
+      <header class="uk-comment-header uk-position-relative">
+        <div class="uk-grid-medium uk-flex-middle" uk-grid>
+          <div class="uk-width-auto">
+            <img
+              class="uk-comment-avatar"
+              src="<%= post.image %> "
+              width="80"
+              height="80"
+              alt=""
+            />
+          </div>
+          <div class="uk-width-expand">
+            <h4 class="uk-comment-title uk-margin-remove">
+              <a class="uk-link-reset" href="#"
+                ><%= comment.author.username %></a
+              >
+            </h4>
+            <p class="uk-comment-meta uk-margin-remove-top">
+              <a class="uk-link-reset" href="#"
+                ><%= comment.createdAt %> days ago</a
+              >
+            </p>
+          </div>
+        </div>
+        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+        <div class="uk-position-top-right uk-position-small">
+          <a
+            class="uk-button uk-button-primary"
+            href="/posts/<%= post._id %>/comments/<%= comment._id %>/edit"
+            >Edit</a
+          >
+          <form
+            action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="uk-button uk-button-danger">
+              Delete
+            </button>
+          </form>
+        </div>
+        <% } %>
+      </header>
+      <div class="uk-comment-body">
+        <p>
+          <%= comment.text %>
+        </p>
+      </div>
+    </article>
+  </li>
+</ul>
+<% }) %> <%- include('includes/footer') %>

@@ -1,0 +1,42 @@
+<%- include('../includes/header') %> <%- include('../includes/navbar.ejs') %>
+<div class="uk-container">
+  <% if(error && error.length > 0){ %>
+  <div class="uk-alert-danger" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p><%= error %></p>
+  </div>
+  <% } %> <% if(success && success.length > 0){ %>
+  <div class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p><%= success %></p>
+  </div>
+  <% } %>
+  <div class="uk-flex uk-height-medium uk-margin uk-text-center">
+    <div
+      class="uk-margin-auto uk-margin-auto-vertical uk-width-1-2@s uk-card uk-card-default uk-card-body"
+    >
+      <form
+        action="/posts/<%= post_id %>/comments/<%= comment._id %>?_method=PUT  "
+        method="POST"
+      >
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: commenting"></span>
+            <input
+              class="uk-input uk-form-width-large"
+              type="text"
+              name="comment[text]"
+              value="<%= comment.text %> "
+              required
+            />
+          </div>
+        </div>
+        <button
+          class="uk-modal-close uk-input uk-form-width-large uk-button-primary"
+        >
+          Edit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

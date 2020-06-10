@@ -1,0 +1,28 @@
+<%- include('includes/header') %> <%- include('includes/navbar.ejs') %>
+<div class="uk-container">
+  <% if(error && error.length > 0){ %>
+  <div class="uk-alert-danger" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p><%= error %></p>
+  </div>
+  <% } %> <% if(success && success.length > 0){ %>
+  <div class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p><%= success %></p>
+  </div>
+  <% } %>
+  <div class="grid">
+    <% posts.forEach(function(post){ %>
+    <dl class="uk-description-list">
+      <a href="posts/<%= post._id %> "
+        ><img src="<%= post.image %> " alt="<%= post.title %> " class="image"
+      /></a>
+      <a href="posts/<%= post._id %>"
+        ><dt><%- post.title.substring(0, 100) %></dt>
+        Read more</a
+      >
+    </dl>
+    <% }); %>
+  </div>
+  <%- include('includes/footer') %>
+</div>

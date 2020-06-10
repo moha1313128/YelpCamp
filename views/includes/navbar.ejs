@@ -1,0 +1,120 @@
+<div class="uk-container">
+  <nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+      <ul class="uk-navbar-nav">
+        <li class="uk-active">
+          <a href="/"
+            ><i uk-icon="icon: camera; ratio:1.5" class="camera"></i>Logo</a
+          >
+        </li>
+        <li>
+          <a href="posts">Post</a>
+        </li>
+        <li><a href="posts/create">New Post</a></li>
+      </ul>
+    </div>
+
+    <div class="uk-navbar-right">
+      <ul class="uk-navbar-nav">
+        <!-- <li><a href="#" uk-toggle="target: #login">Login</a></li> -->
+        <div id="login" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">Login To Your Account</h2>
+            <form>
+              <div class="uk-margin">
+                <div class="uk-inline">
+                  <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                  <input
+                    class="uk-input uk-form-width-large"
+                    type="text"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="uk-margin">
+                <div class="uk-inline">
+                  <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                  <input
+                    class="uk-input uk-form-width-large"
+                    type="text"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+              </div>
+              <button
+                class="uk-modal-close uk-input uk-form-width-large uk-button-secondary"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- <li><a href="#" uk-toggle="target: #register">Register</a></li> -->
+        <div id="register" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">Make New Account</h2>
+            <form>
+              <div class="uk-margin">
+                <div class="uk-inline">
+                  <span class="uk-form-icon" uk-icon="icon: user"></span>
+                  <input
+                    class="uk-input uk-form-width-large"
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="uk-margin">
+                <div class="uk-inline">
+                  <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                  <input
+                    class="uk-input uk-form-width-large"
+                    type="text"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="uk-margin">
+                <div class="uk-inline">
+                  <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                  <input
+                    class="uk-input uk-form-width-large"
+                    type="text"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+              </div>
+              <button
+                class="uk-modal-close uk-input uk-form-width-large uk-button-secondary"
+              >
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+        <% if(!currentUser){ %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        <% } else { %>
+        <li><a href="/logout">Logout</a></li>
+        <li>
+          <a href="#"><%= currentUser.username %> </a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Profile</a></li>
+            </ul>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+</div>
+<br />

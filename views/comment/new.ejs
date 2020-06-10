@@ -1,0 +1,23 @@
+<%- include('../includes/header') %>
+<div class="uk-flex uk-height-medium uk-margin uk-text-center">
+  <div
+    class="uk-margin-auto uk-margin-auto-vertical uk-width-1-2@s uk-card uk-card-default uk-card-body"
+  >
+    <form action="/posts/<%= post._id %>/comments" method="POST">
+      <div class="uk-margin">
+        <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: commenting"></span>
+          <input
+            class="uk-input uk-form-width-large"
+            type="text"
+            name="comment[text]"
+            placeholder="Comment"
+          />
+        </div>
+      </div>
+      <button class="uk-button uk-button-primary">
+        Comment
+      </button>
+    </form>
+  </div>
+</div>

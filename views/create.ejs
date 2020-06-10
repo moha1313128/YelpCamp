@@ -1,0 +1,51 @@
+<%- include('includes/header') %> <%- include('includes/navbar.ejs') %>
+<div class="uk-flex uk-height-medium uk-margin uk-text-center">
+  <div
+    class="uk-margin-auto uk-margin-auto-vertical uk-width-1-2@s uk-card uk-card-default uk-card-body"
+  >
+    <h1 class="uk-text-center">Make new post</h1>
+    <form action="/posts" method="POST">
+      <div class="uk-margin">
+        <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
+          <input
+            class="uk-input uk-form-width-large"
+            type="text"
+            name="title"
+            placeholder="Title"
+            required
+          />
+        </div>
+      </div>
+      <div class="uk-margin">
+        <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: comment"></span>
+          <input
+            class="uk-input uk-form-width-large"
+            type="text"
+            name="content"
+            placeholder="Content"
+            required
+          />
+        </div>
+      </div>
+      <div class="uk-margin">
+        <div class="uk-inline">
+          <span class="uk-form-icon" uk-icon="icon: image"></span>
+          <input
+            class="uk-input uk-form-width-large"
+            type="text"
+            name="image"
+            placeholder="Image URL"
+            required
+          />
+        </div>
+      </div>
+      <button class="uk-button uk-button-primary">
+        Add Post
+      </button>
+    </form>
+  </div>
+</div>
+<br /><br /><br />
+<%- include('includes/footer') %>
